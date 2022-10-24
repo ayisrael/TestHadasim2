@@ -10,7 +10,7 @@ public class Main1 {
 		// TODO Auto-generated method stub
 		DatabaseConnection.getConnection();// open connection
 		CoronaManager man = new  CoronaManager();
-		 man.getAllClients();
+		 //int a = man.GetAllClientByCity("Jerusalem");
 		 //man.getAllVaccinationByClientId(12345);
 		 //man.removeClient(12349);
 		 //man.AddClient(12002, "laainman", "Ari", null, null, 0, 0, 0);
@@ -26,7 +26,7 @@ public class Main1 {
 		 //man.updateRecovering(12001,date , datei);
 		 //Vaccination vac= new Vaccination();
 		 //vac.setdate("2022/09/09");
-		 //System.out.println()
+		// System.out.println(a);
 	}
 
 }

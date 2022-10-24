@@ -1,10 +1,8 @@
 package serverSide;
 
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//import java.sql.Date;
 
 public class Vaccination {
 	
@@ -12,20 +10,25 @@ public class Vaccination {
 	private Date dateVaccination;
 	private int manufacturerID;
 	private String manufacturerName;
-	//private Date date;
 
 	
 	public long getClientID() {
 		return clientID;
 	}
-	public void setClientID(long clientID) {
-		this.clientID = clientID;
+	public int getManufacturerID() {
+		return manufacturerID;
 	}
 	
 	public String getDateVaccination() {
 		String date = new SimpleDateFormat("yyyy/MM/dd").format(dateVaccination);
 
 		return date;
+	}
+	public String getManufacturerName() {
+		return manufacturerName;
+	}
+	public void setClientID(long clientID) {
+		this.clientID = clientID;
 	}
 	public void setDateVaccination(String dateVaccination) {
 		try {		
@@ -35,15 +38,11 @@ public class Vaccination {
 		    }
 		//this.dateVaccination = dateVaccination;
 	}
-	public int getManufacturerID() {
-		return manufacturerID;
-	}
+
 	public void setManufacturerID(int manufacturerID) {
 		this.manufacturerID = manufacturerID;
 	}
-	public String getManufacturerName() {
-		return manufacturerName;
-	}
+	
 	public void setManufacturerName(String manufacturerName) {
 		this.manufacturerName = manufacturerName;
 	}

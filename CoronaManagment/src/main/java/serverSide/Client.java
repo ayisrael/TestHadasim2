@@ -17,9 +17,6 @@ public class Client {
 	private String phone;
 	private String mobilePhone;
 	private Date dateOfBirth;
-
-	
-	
 	
 	List<Recovering> recovery = new ArrayList<Recovering>();
 	List<Vaccination> vaccination = new ArrayList<Vaccination>();
@@ -55,6 +52,12 @@ public class Client {
 	public List<Vaccination> getVaccination() {
 		return vaccination;
 	}
+	public String getDateOfBirth() {
+		String date = new SimpleDateFormat("yyyy/MM/dd").format(dateOfBirth);
+
+		return date;
+		//return dateOfBirth;
+	}
 	public void setClientID(long clientID) {
 		this.clientID = clientID;
 	}
@@ -85,13 +88,6 @@ public class Client {
 	}
 	public void setMobilePhone(String mobilePhone) {
 		this.mobilePhone = mobilePhone;
-	}
-
-	public String getDateOfBirth() {
-		String date = new SimpleDateFormat("yyyy/MM/dd").format(dateOfBirth);
-
-		return date;
-		//return dateOfBirth;
 	}
 	public void setDateOfBirth(String dateOfBirth) {
 		try {

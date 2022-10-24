@@ -6,6 +6,7 @@
 <meta charset="windows-1255">
 <title>Client Details</title>
 <script type="text/javascript">
+//Makes the data available for editing
 function enableEdit() {
 	document.getElementById("lname").readOnly = false;
 	document.getElementById("fname").readOnly = false;
@@ -15,25 +16,22 @@ function enableEdit() {
 	document.getElementById("phone").readOnly = false;
 	document.getElementById("mobilePhone").readOnly = false;
 	document.getElementById("update").style.visibility = 'hidden';
-	//document.getElementById("Submit").style.display='';
 	SubmitUpdate.style.display='block';
-	//hidden button
 }
-
+//Allows  to add a vaccine
 function enableAddVacc(act){
-	//document.getElementById("vaccForm").readOnly = false;
 	addVac.style.display='block';
 	addVacButton.style.visibility ='hidden';
 	saveNewVacc.style.display='block';
-	//document.getElementById("actionToPerform").value= act;
 }
+//Allows  to add Dates of illnes 
 function enableAddRec(){
-	//document.getElementById("vaccForm").readOnly = false;
 	addRec.style.display='block';
 	addRecButton.style.visibility ='hidden';
 	saveNewRec.style.display='block';
 }
 
+//insert the name of action to "value" for the servlet
 function changeAction(act) {
 	document.getElementById("actionToPerform").value= act;
 	cdForm.submit();
@@ -51,66 +49,61 @@ function changeAction(act) {
 	 message="";
  }
 
- Connection con = DatabaseConnection.getConnection();
+ //Connection con = DatabaseConnection.getConnection();
  CoronaManager cm = new CoronaManager();
- Client client= cm.getAllDetailsClientById(id);
+ Client client= cm.getAllDetailsClientById(id);//get the details
  List<Vaccination> vacc =new  ArrayList<Vaccination>();
- vacc= cm.getAllVaccinationszClientId(id);
- if(vacc.size()>3){
-	 
- }
+ vacc= cm.getAllVaccinationszClientId(id);//get all the client's vaccinations
  List<Recovering> recovering =new  ArrayList<Recovering>();
- recovering= cm.getAllRecoveringByClientId(id);
- 
-
+ recovering= cm.getAllRecoveringByClientId(id);//get all client's illness date
 
  %>
 	<form name="cdForm" method=post action=CoronaMngServlet>
 	<table>
 		<tr>
 			<td align="left" >Client ID:</td>
-			<td><input type="text" readonly name="clientId" id="clientId" value="<%= client.getClientID()%>" pattern="[0-9]{9}"/> <br/></td>
+			<td><input type="text" readonly  name="clientId" id="clientId" value="<%= client.getClientID()%>" pattern="[0-9]{9}"/> <br/></td>
 		</tr>
 		
 		<tr>
 		<td align="left">Last name:</td>
-		<td> <input type="text" readonly name="lname" id="lname" value="<%= client.getLastName()%>" pattern="[A-Za-z]{1,20}"/> <br/></td>
+		<td> <input type="text" readonly required name="lname" id="lname" value="<%= client.getLastName()%>" pattern="[A-Za-z]{1,20}"/> <br/></td>
 		</tr>
 		
 		
 		<tr>
 		<td align="left"> First name:</td>
-        <td><input type="text" readonly name="fname" id="fname" value="<%= client.getFirstName()%>" pattern="[A-Za-z]{1,20}"/> <br/></td>
+        <td><input type="text" readonly required name="fname" id="fname" value="<%= client.getFirstName()%>" pattern="[A-Za-z]{1,20}"/> <br/></td>
 		</tr>
 		
 		<tr>
 			<td align="left">Date of birth:</td>
-			<td> <input type="text" name="dateOfBirth" readonly id="dateOfBirth" value="<%= client.getDateOfBirth()%>"/> <br/></td>
+			<td> <input type="text" name="dateOfBirth" readonly  id="dateOfBirth" value="<%= client.getDateOfBirth()%>"/> <br/></td>
 		</tr>
 		
 		<tr>
 		<td align="left">City:</td>
-        <td><input type="text" readonly name="city" id="city" value="<%= client.getCity()%>" pattern="[A-Za-z\s]{1,20}"/> <br/> </td>
+        <td><input type="text" readonly name="city" id="city" required value="<%= client.getCity()%>" pattern="[A-Za-z\s]{1,20}"/> <br/> </td>
 		</tr>
 	
 		<tr>
 		<td align="left"> Street:</td>
-        <td><input type="text" readonly name="street" id="street" value="<%= client.getStreet()%>" pattern="[A-Za-z\s]{1,20}"/> <br/></td>
+        <td><input type="text" readonly name="street" id="street" required value="<%= client.getStreet()%>" pattern="[A-Za-z\s]{1,20}"/> <br/></td>
 		</tr>
 		
 		<tr>
 		<td align="left"> Home number:</td>
-        <td><input type="text" readonly name="homeNum" id="homeNum" value="<%= client.getHomeNum()%>" pattern="[0-9]+"/> <br/></td>
+        <td><input type="text" readonly name="homeNum" id="homeNum" required value="<%= client.getHomeNum()%>" pattern="[0-9]+"/> <br/></td>
 		</tr>
 		
 		<tr>
 		<td align="left">Phone </td>
-        <td><input type="text" readonly  name="phone" id="phone" value="<%= client.getPhone()%>" pattern="[0-9]{9}"/> <br/></td>
+        <td><input type="text" readonly  name="phone" id="phone" required value="<%= client.getPhone()%>" pattern="[0-9]{9}"/> <br/></td>
 		</tr>
 		
 		<tr>
 		<td align="left">Mobile phone</td>
-        <td><input type="text" readonly name="mobilePhone" id="mobilePhone" value="<%= client.getMobilePhone()%>" pattern="[0-9]{10}"/> <br/></td>
+        <td><input type="text" readonly name="mobilePhone" id="mobilePhone" required value="<%= client.getMobilePhone()%>" pattern="[0-9]{10}"/> <br/></td>
 		</tr>
 		<tr> 
 		<td>
@@ -119,7 +112,7 @@ function changeAction(act) {
 		</tr>
 	<tr>
 	<td>
-    <input type="button" id="update" value="Update" style="height:30px; width:150px" onclick="enableEdit()"/>
+    <input type="button" id="update" value="Update" style="height:30px; width:180px" onclick="enableEdit()"/>
 	<input type="submit" id="SubmitUpdate" value=" Save details"  style="height:30px; width:150px" hidden="true"/>
     </td>
    </tr>	
@@ -157,18 +150,18 @@ function changeAction(act) {
 	
 	<tr>
 	<td> Date of receipt of vaccination:</td>
-	<td> <input type="text" name="dateVacc" id="dateVacc"/> <br/></td>  
+	<td> <input type="text" required name="dateVacc" id="dateVacc" pattern="\d{4}/\d{1,2}/\d{1,2}"/> <br/></td>  
 	</tr>
 	
 	<tr>
 	<td>Manufacturer ID:</td>
-	<td> <input type="text" name="manufacturerID" id="manufacturerID" pattern="[0-9]+"/> <br/></td>  
+	<td> <input type="text" required name="manufacturerID" id="manufacturerID" pattern="[0-9]+"/> <br/></td>  
 	</tr>
 	</table>
 	<table>
 	<tr>
 	<td>
-	<input type="text" readonly name="actionToPerform" id="actionToPerform" value="addVaccination" style="display:none"/> <br/>
+	<input type="text" readonly  name="actionToPerform" id="actionToPerform" value="addVaccination" style="display:none"/> <br/>
     <input type="submit" id="saveNewVacc" value="Save details  " style="height:30px; width:150px" hidden="true" />
 	</td>
 	</tr>
@@ -177,7 +170,7 @@ function changeAction(act) {
 </form>
 </div>
 <div>    
-       <input type="button" id="addVacButton" value=" Add vaccination receipt date " style="height:30px; width:150px" onclick="enableAddVacc('addVacc')" />   
+       <input type="button" id="addVacButton" value=" Add vaccination receipt date " style="height:30px; width:200px" onclick="enableAddVacc('addVacc')" />   
 </div>
 
 
@@ -204,22 +197,22 @@ function changeAction(act) {
 	</tr>
 	<tr>
 	<td>Date of receiving a positive result: </td>
-	<td><input type="text" name="positiveDate" id="positiveDate"/> <br/></td>
+	<td><input type="text" name="positiveDate" id="positiveDate" pattern="\d{4}/\d{1,2}/\d{1,2}" required/> <br/></td>
 	</tr>
 	<tr>
 	<td>Date of recovery:</td>
-	<td><input type="text" name="dateOfRec" id="dateOfRec"/> <br/></td>
+	<td><input type="text" name="dateOfRec" id="dateOfRec" pattern="\d{4}/\d{1,2}/\d{1,2}" required/> <br/></td>
 	</tr>	
 	</table>
 	<input type="text" readonly name="actionToPerform" id="actionToPerform" value="addRec" style="display:none"/> <br/>
     <input type="submit" id="saveNewRec" value="Save details  " style="height:30px; width:150px" hidden="true" />
 </form>
 </div>
-<input type="button" id="addRecButton" value="Add dates of illness   " style="height:30px; width:150px" onclick="enableAddRec()" />
+<input type="button" id="addRecButton" value="Add dates of illness " style="height:30px; width:200px" onclick="enableAddRec()" />
 
 <table>
 <tr>
-<td><input type="button" value=" Back "  style="height:50px; width:200px" onclick="changeAction('Back')"></td>
+<td><input type="button" value=" Back "  style="height:50px; width:200px" onclick="window.location='clientList.jsp'"></td>
 <td><input type="button" value="Delete client" style="height:50px; width:200px" onclick="changeAction('delete')"/></td>
 </tr>
 </table>

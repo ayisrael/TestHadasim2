@@ -1,6 +1,5 @@
 
 package serverSide;
-//import java.sql.Date;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +12,19 @@ public class Recovering {
 	private Date positiveTestDate;
 	private Date recoveringDate;	
 	
+	public boolean CheckDates(String positiveDate, String recoveringDate) {
+		try {		
+			Date positive= new SimpleDateFormat("yyyy/MM/dd").parse(positiveDate); 
+			Date recovering =new SimpleDateFormat("yyyy/MM/dd").parse(recoveringDate); 
+			if(positive.compareTo(recovering) < 0){
+				return true;		
+			}
+			}
+		 catch(Exception e) {
+			 e.getMessage();
+		    }
+		return false;
+	}
 	
 	public long getClientID() {
 		return clientID;
@@ -34,6 +46,9 @@ public class Recovering {
 		//return recoveringDate;
 	}
 
+	public void setClientID(long clientID) {
+		this.clientID = clientID;
+	}
 
 	public void setPositiveTestDate(String positiveTestDate) {
 		try {		
@@ -55,9 +70,7 @@ public class Recovering {
 
 	
 
-	public void setClientID(long clientID) {
-		this.clientID = clientID;
-	}
+	
 
 
 }

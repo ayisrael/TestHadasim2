@@ -12,11 +12,10 @@ String message = request.getParameter("message");
 if(message==null){
 	 message="";
 }
- Connection con = DatabaseConnection.getConnection();
+ //Connection con = DatabaseConnection.getConnection();
  CoronaManager cm = new CoronaManager();
- //Client c= new Client();
  List<Client> clients =new  ArrayList<Client>();
- clients=cm.getAllClients();
+ clients=cm.getAllClients();//get all client from DB
  %>
 
 <table style="width:100%">
@@ -48,10 +47,13 @@ if(message==null){
             
             </tr>
        <% } %>
-	<tr>
+ <table>
+<tr>
 		<td colspan="8"><input type="button" value="Add new client" style="height:50px; width:200px" title="Add new client" onclick="window.location='addNewClient.jsp'"/></td>
-	</tr>
+		<td colspan="8"><input type="button" value="Chart" style="height:50px; width:200px" title="How many people are vaccinated" onclick="window.location='chart.jsp'"/></td>
+</tr>
 </table>
+
 
 <p>
 	<%=message%>
