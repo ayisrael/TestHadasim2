@@ -42,8 +42,8 @@ function changeAction(act) {
 </head>
 <body>
 
-<% 
- long id = Long.parseLong(request.getParameter("clnId"));
+<%
+long id = Long.parseLong(request.getParameter("clnId"));
  String message = request.getParameter("message");
  if(message==null){
 	 message="";
@@ -53,11 +53,10 @@ function changeAction(act) {
  CoronaManager cm = new CoronaManager();
  Client client= cm.getAllDetailsClientById(id);//get the details
  List<Vaccination> vacc =new  ArrayList<Vaccination>();
- vacc= cm.getAllVaccinationszClientId(id);//get all the client's vaccinations
+ vacc= cm.getAllVaccinationsByClientId(id);//get all the client's vaccinations
  List<Recovering> recovering =new  ArrayList<Recovering>();
  recovering= cm.getAllRecoveringByClientId(id);//get all client's illness date
-
- %>
+%>
 	<form name="cdForm" method=post action=CoronaMngServlet>
 	<table>
 		<tr>

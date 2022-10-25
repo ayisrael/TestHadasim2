@@ -84,9 +84,9 @@ public class CoronaMngServlet extends HttpServlet {
 			try {
 				Recovering rec = new Recovering();
 				//check if the date is correct
-				boolean bool =rec.CheckDates((request.getParameter("positiveDate")), (request.getParameter("dateOfRec")));
+				boolean bool =rec.CheckDates((request.getParameter("positiveDate")), (request.getParameter("dateOfRec")),Long.parseLong(request.getParameter("clientIdRec")));
 				if(bool == false){
-					throw new Exception("The date of recovery must be later than the date of receiving a positive result");
+					throw new Exception("The dates entered are incorrect");
 				}
 				rec.setClientID(Long.parseLong(request.getParameter("clientIdRec")));
 				rec.setPositiveTestDate(request.getParameter("positiveDate"));

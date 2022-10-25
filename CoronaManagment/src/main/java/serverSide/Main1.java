@@ -10,6 +10,8 @@ public class Main1 {
 		// TODO Auto-generated method stub
 		DatabaseConnection.getConnection();// open connection
 		CoronaManager man = new  CoronaManager();
+		Recovering rec = new Recovering();
+		//rec.CheckDates("2022/09/09", "2022/10/09");
 		 //int a = man.GetAllClientByCity("Jerusalem");
 		 //man.getAllVaccinationByClientId(12345);
 		 //man.removeClient(12349);

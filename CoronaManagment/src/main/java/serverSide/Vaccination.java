@@ -1,7 +1,9 @@
 package serverSide;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Vaccination {
@@ -46,9 +48,6 @@ public class Vaccination {
 	public void setManufacturerName(String manufacturerName) {
 		this.manufacturerName = manufacturerName;
 	}
-	
-	
-
 
 
 }

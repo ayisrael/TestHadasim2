@@ -41,7 +41,7 @@ public class CoronaManager {//All the CRUD (connection to mysql)
 		return allClient;
 	};
 	
-	public List<Vaccination> getAllVaccinationszClientId(long id){ // get all vaccination from DB by client ID 
+	public List<Vaccination> getAllVaccinationsByClientId(long id){ // get all vaccination from DB by client ID 
 		List<Vaccination> allVaccination = new ArrayList<Vaccination>();//List of Vaccination of the patient
 		try{
 			//the information from vaccination table with column for vaccine's name from manufacturer table
@@ -154,7 +154,7 @@ public class CoronaManager {//All the CRUD (connection to mysql)
 				throw new Exception("This Manufacturer ID does not exist"); 
 			}
 			List<Vaccination> vac = new ArrayList<Vaccination>(); 
-			vac = getAllVaccinationszClientId(vaccination.getClientID());//get all the details about the client's vaccinations
+			vac = getAllVaccinationsByClientId(vaccination.getClientID());//get all the details about the client's vaccinations
 			if(vac.size()>3) {//It is not possible to be vaccinated more than four times
 				throw new Exception("This client already vaccinated four times"); 
 			}
@@ -249,7 +249,12 @@ public class CoronaManager {//All the CRUD (connection to mysql)
 	}
     	
     public String AddRecoveringDate(Recovering rec) {//Add recovering date
-		try {			
+		try {
+			List<Recovering> allRecovering = new ArrayList<Recovering>();//List of dates of the client's illness
+			allRecovering = getAllRecoveringByClientId(rec.getClientID());//get all the details about the client's illnes's dates
+			if(allRecovering.size()>3) {//It is not possible to be sick more than four times
+				throw new Exception("ERROR, The client already sick four times"); 
+			}
 			final String ADD_RECOVERING_DATE = "INSERT INTO corona_db.Recovering VALUES(?,?,?)";//the query to mysql
 			PreparedStatement preparedStatement = DatabaseConnection.getConnection().prepareStatement(ADD_RECOVERING_DATE);//connect to DB
 			//the parameters to the query
@@ -290,7 +295,7 @@ public class CoronaManager {//All the CRUD (connection to mysql)
     	List<Client> allClient = new ArrayList<Client>();
     	allClient =getAllClients();//get all client
     	for (int i = 0; i < allClient.size(); i++) {
-    		if(getAllVaccinationszClientId(allClient.get(i).getClientID()).size()>0) {//if client(i) has been vaccinted    			
+    		if(getAllVaccinationsByClientId(allClient.get(i).getClientID()).size()>0) {//if client(i) has been vaccinted    			
     			count++;		
     		}
     	}
